@@ -2,81 +2,135 @@ import juguetes.*
 
 describe "juguetes" {
 	
-	 const baldecito = null // TODO: Construir/configurar un baldecito de cuerpos geometricos que tenga 
-							// un cubo de volumen  4 azul y un cilindro de volumen 3 rosa 	
-	const pelota = null// TODO: Construir/configurar una Pelota de radio 4
-	const tachitos = null // TODO: Construir un juego de tachitos apilables con 3 tachitos de volumen 6,5 y 4 respectivamente. todos azules.
-	const valentin = null // TODO: construir un niño típico de 10 meses de edad 
-	const zoe = null // TODO: construir una niño curiosa de 20 meses de edad 
-	const milena = null// TODO: construir una niña revoltosa de 15 meses de edad
+	const cubo = new Pieza(volumen=4,color="azul")
+	const cilindro = new Pieza(volumen=3,color="rosa")
+	const tachito1 = new Pieza(volumen=6,color="azul")
+	const tachito2 = new Pieza(volumen=5,color="azul")
+	const tachito3 = new Pieza(volumen=4,color="azul")
+	
+	const baldecito = new juguetes.JugueteConPiezas(cuv=2) // TODO: Construir/configurar un baldecito de cuerpos geometricos que tenga 
+											// un cubo de volumen  4 azul y un cilindro de volumen 3 rosa 	
+	const pelota = new Pelota(cuv=2,radio=4)// TODO: Construir/configurar una Pelota de radio 4
+	
+	const tachitos = new Tachito(cuv=2) // TODO: Construir un juego de tachitos apilables con 3 tachitos de volumen 6,5 y 4 respectivamente. todos azules.
+	
+	
+	const valentin = new NinioTipico(edad=10) // TODO: construir un niño típico de 10 meses de edad 
+	const zoe = new Curioso(edad=20) // TODO: construir una niño curiosa de 20 meses de edad 
+	const milena = new Revoltoso(edad=15)// TODO: construir una niña revoltosa de 15 meses de edad
 	
 	method initialize(){
 	   // TODO: configurar el cuv con un valor de 2
+	   	baldecito.agregarPieza(cubo)
+		baldecito.agregarPieza(cilindro)
+		tachitos.agregarPieza(tachito1)
+		tachitos.agregarPieza(tachito2)
+		tachitos.agregarPieza(tachito3)
+		
 	}
-/* 	
+	
 	test "costo de un juguete" {
 		//TODO: verificar que el costo de la pelota es 24
 		//TODO: verificiar que el costo del baldecito es 21
-		//TODO verificar qeu el costo de los tachitos es 39
+		//TODO verificar qeu el costo de los tachitos es 39		
+		assert.equals(39,tachitos.costoFabricacion())
+		assert.equals(21,baldecito.costoFabricacion())
+		assert.equals(24, pelota.costoFabricacion())
 	}
-*/
-/* 	
+
+
 	test "eficacia" {
 	    //TODO: verificar que la eficacia de la pelota sea 12
 		//TODO: verificar que la eficacia del baldecito sea 6
 		//TODO: verificar que la eficacia de los tachitos sea 15
+		assert.equals(12,pelota.eficacia())
+		assert.equals(6,baldecito.eficacia())
+		assert.equals(15,tachitos.eficacia())
 	} 
-*/	
-/* 	test "precio" {
+
+ 	test "precio" {
 		//TODO: verificar que el precio de la pelota es 144
 		//TODO: verificiar que el precio del baldecito es 101
 		//TODO verificar que el precio de los tachitos es 189
+		assert.equals(144,pelota.precio())
+		assert.equals(101,baldecito.precio())
+		assert.equals(189,tachitos.precio())
 	}
-*/
 
-/* 	
+
+ 	
 	test "entretenimiento" {
 		//TODO: verificar que valentin se entretiene con la pelota 13.2 minutos
 		//TODO: verificar que zoe se entretiene con la pelota 21.6 minutos
 		//TODO verificar que milena se entretiene con la pelota 6.9 miutos
+		assert.equals(13.2,valentin.meEntretiene(pelota))
+		assert.equals(21.6,zoe.meEntretiene(pelota))
+		assert.equals(6.9,milena.meEntretiene(pelota))
 	}
-*/
-/* 	
+
+ 	
 	test "obtener juguetes tipico" {
 		//TODO: hacer que valentin obtenga una pelota
 		//TODO: hacer que valentin obtenga los tachitos
 		//TODO: verificar que valentin tenga a la pelota y los tachitos
+		valentin.aceptaJuguete(pelota)
+		valentin.aceptaJuguete(tachitos)
+		var lista = valentin.listaDeJuguetes()
+		assert.that(lista.contains(pelota))
+		assert.that(lista.contains(tachitos))
 	}
-*/
-/* 
+
+ 
 	test "obtener juguetes curiosa" {
 		//TODO: hacer que zoe obtenga la pelota. 
 		//TODO: hacer que zoe intente obtener los tachitos. NO SE PUEDE!! 
 		//TODO: verificar que zoe solo tenga a la pelota entre sus juguetes
+		zoe.aceptaJuguete(pelota)
+		zoe.aceptaJuguete(tachitos)
+		var lista = zoe.listaDeJuguetes()
+		assert.that(lista.contains(pelota))
+		assert.notThat(lista.contains(tachitos))
 	}
-*/
-/* 
+
+ 
 	test "comprar juguetes revoltosa" {
 		//TODO: intentar que milena obtenga la pelota. NO SE PUEDE!
 		//TODO: hacer que milena obtenga los tachitos. 
 		//TODO: verificar que milena solo tenga a los tachitos entre sus juguetes
+		milena.aceptaJuguete(pelota)
+		milena.aceptaJuguete(tachitos)
+		var lista = milena.listaDeJuguetes()
+		assert.notThat(lista.contains(pelota))
+		assert.that(lista.contains(tachitos))
 	}
-*/
-/* 	
+
+ 	
 	test "donar ok" {
 		//TODO: configurar a valentin con los siguientes juguetes: baldecito, pelota y tachitos
 		//TODO: hacer que valentin le done a milena 
 		//TODO: verificar que milena solo tenga a los tachitos entre sus juguetes
 		//TODO: verificar que valentin tiene como juguetes el baldecito y la pelota 
+		valentin.aceptaJuguete(baldecito)
+		valentin.aceptaJuguete(pelota)
+		valentin.aceptaJuguete(tachitos)
+		valentin.donar(milena)
+		var lista = milena.listaDeJuguetes()
+		assert.that(lista.contains(tachitos))
 	}
-*/
-/* 	
+
+ 	
 	test "donar no ok" {
 		//TODO: configurar a zoe con los siguientes juguetes: baldecito y pelota 
 		//TODO: hacer que zoe le done a milena. NO SE PUEDE!!
 		//TODO: verificar que los juguetes de zoe sean baldecito y pelota
 		//TODO: verificar que milena no tiene juguetes
+		zoe.aceptaJuguete(baldecito)
+		zoe.aceptaJuguete(pelota)
+		zoe.donar(milena)
+		var listaMilena = milena.listaDeJuguetes()
+		assert.equals(0,listaMilena.size())
+		
 	}
-*/	
+	
 	
 }
