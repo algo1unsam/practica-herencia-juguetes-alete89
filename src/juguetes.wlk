@@ -6,7 +6,6 @@ class Juguete {
 
 	method eficacia()
 
-	method precio() = (self.eficacia() * 10) + self.costoFabricacion()
 
 }
 
