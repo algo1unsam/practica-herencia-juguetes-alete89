@@ -1,12 +1,12 @@
 class Juguete {
 
 	var property cuv
-
+	
 	method costoFabricacion()
 
 	method eficacia()
 
-	method precio() = (self.otraCosa() * 10) + costoFabricacion()
+	method precio() = (self.eficacia() * 10) + self.costoFabricacion()
 
 }
 
