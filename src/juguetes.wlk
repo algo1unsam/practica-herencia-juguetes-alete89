@@ -1,7 +1,7 @@
 class Juguete {
 
 	var property cuv
-
+	
 	method costoFabricacion()
 
 	method eficacia()
